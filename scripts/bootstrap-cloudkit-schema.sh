@@ -10,7 +10,6 @@ set -eu
 cd "$(dirname "$0")/.."
 CONTAINER=iCloud.dev.willsawyerrrr.kintemp
 BUNDLE_ID=dev.willsawyerrrr.kintemp
-APPLE_ENV=b5zkkwxuutlttwbrv5xhgojye4
 DERIVED=build/bootstrap
 SCHEMA_OUT=build/development-schema.ckdb
 
@@ -43,9 +42,13 @@ if ! grep -q '^bootstrap: OK' build/bootstrap.log; then
   exit 1
 fi
 
-# The token never leaves the child process environment and is not printed.
-op run --no-masking --environment "$APPLE_ENV" -- sh -c '
+# The token stays in the subshell environment and is not printed.
+(
+  set -a
+  . "$HOME/willsawyerrrr.dev/.env.apple"
+  set +a
   xcrun cktool export-schema --token "$CLOUDKIT_MANAGEMENT_TOKEN" --team-id "$DEVELOPMENT_TEAM" \
-    --container-id "$0" --environment development --output-file "$1"' "$CONTAINER" "$SCHEMA_OUT"
+    --container-id "$CONTAINER" --environment development --output-file "$SCHEMA_OUT"
+)
 echo "Development schema exported to $SCHEMA_OUT:"
 grep -n 'RECORD TYPE' "$SCHEMA_OUT"

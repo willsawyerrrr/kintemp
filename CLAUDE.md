@@ -29,9 +29,9 @@ household sharing lives in `Core/` behind `HouseholdSync`.
 - A change to the protocol or routine updates `docs/protocol.md` and
   `docs/architecture.md` in the same PR.
 - Bundle ID is `dev.willsawyerrrr.kintemp`.
-  `DEVELOPMENT_TEAM` comes from the shared Apple Development 1Password
-  Environment; locally run
-  `op run --environment b5zkkwxuutlttwbrv5xhgojye4 -- xcodegen generate`.
+  `DEVELOPMENT_TEAM` comes from the mounted Apple Development env file;
+  locally run
+  `(set -a; . "$HOME/willsawyerrrr.dev/.env.apple"; set +a; xcodegen generate)`.
 
 ## Commands
 
