@@ -265,15 +265,12 @@ the Development environment with the mounted Apple Development env file (it
 supplies `CLOUDKIT_MANAGEMENT_TOKEN` and `DEVELOPMENT_TEAM`):
 
 ```sh
-(
-  set -a
-  . "$HOME/willsawyerrrr.dev/.env.apple"
-  set +a
+~/willsawyerrrr.dev/platform/main/scripts/load-env ~/willsawyerrrr.dev/.env.apple -- sh -c '
   xcrun cktool import-schema \
     --token "$CLOUDKIT_MANAGEMENT_TOKEN" --team-id "$DEVELOPMENT_TEAM" \
     --container-id iCloud.dev.willsawyerrrr.kintemp --environment development \
     --validate --file CloudKit/schema.ckdb
-)
+'
 ```
 
 `cktool` cannot deploy to Production, and only Development to Production is

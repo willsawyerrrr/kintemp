@@ -31,7 +31,7 @@ household sharing lives in `Core/` behind `HouseholdSync`.
 - Bundle ID is `dev.willsawyerrrr.kintemp`.
   `DEVELOPMENT_TEAM` comes from the mounted Apple Development env file;
   locally run
-  `(set -a; . "$HOME/willsawyerrrr.dev/.env.apple"; set +a; xcodegen generate)`.
+  `~/willsawyerrrr.dev/platform/main/scripts/load-env ~/willsawyerrrr.dev/.env.apple -- xcodegen generate`.
 
 ## Commands
 
