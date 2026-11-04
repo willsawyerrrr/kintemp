@@ -44,9 +44,7 @@ fi
 
 # The token stays in the subshell environment and is not printed.
 (
-  set -a
-  . "$HOME/willsawyerrrr.dev/.env.apple"
-  set +a
+  eval "$("$HOME/willsawyerrrr.dev/platform/main/scripts/load-env" --print "$HOME/willsawyerrrr.dev/.env.apple")"
   xcrun cktool export-schema --token "$CLOUDKIT_MANAGEMENT_TOKEN" --team-id "$DEVELOPMENT_TEAM" \
     --container-id "$CONTAINER" --environment development --output-file "$SCHEMA_OUT"
 )
