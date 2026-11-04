@@ -261,14 +261,19 @@ grants govern only the public database, which the app never uses. `Users` and
 likewise apply only to the public database.
 
 Apply it to
-the Development environment with the shared Apple Development 1Password
-Environment (it supplies `CLOUDKIT_MANAGEMENT_TOKEN` and `DEVELOPMENT_TEAM`):
+the Development environment with the mounted Apple Development env file (it
+supplies `CLOUDKIT_MANAGEMENT_TOKEN` and `DEVELOPMENT_TEAM`):
 
 ```sh
-op run --environment b5zkkwxuutlttwbrv5xhgojye4 -- sh -c 'xcrun cktool import-schema \
-  --token "$CLOUDKIT_MANAGEMENT_TOKEN" --team-id "$DEVELOPMENT_TEAM" \
-  --container-id iCloud.dev.willsawyerrrr.kintemp --environment development \
-  --validate --file CloudKit/schema.ckdb'
+(
+  set -a
+  . "$HOME/willsawyerrrr.dev/.env.apple"
+  set +a
+  xcrun cktool import-schema \
+    --token "$CLOUDKIT_MANAGEMENT_TOKEN" --team-id "$DEVELOPMENT_TEAM" \
+    --container-id iCloud.dev.willsawyerrrr.kintemp --environment development \
+    --validate --file CloudKit/schema.ckdb
+)
 ```
 
 `cktool` cannot deploy to Production, and only Development to Production is
