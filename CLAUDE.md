@@ -40,7 +40,8 @@ household sharing lives in `Core/` behind `HouseholdSync`.
   (`xcrun simctl list devices available`; names can repeat, so use the UDID).
 - CI (`.github/workflows/ci.yml`) runs `pre-commit` and `ios` on `macos-26`
   with Xcode 26.6 (also in `.xcode-version`; bump together). `ios` picks an
-  available iPhone simulator by UDID, creating one if none exists. The aggregate
+  available iPhone simulator by UDID, creating one if none exists, and caches
+  DerivedData with platform's `xcode-cache` action. The aggregate
   `CI Status` job `needs` every other job; add new jobs to it. `main`'s
   ruleset requires only `CI Status`.
 
