@@ -38,10 +38,10 @@ household sharing lives in `Core/` behind `HouseholdSync`.
 - Tests: `DEVELOPMENT_TEAM= xcodegen generate`, then
   `xcodebuild test -scheme Kintemp -destination 'id=<simulator-udid>' CODE_SIGNING_ALLOWED=NO`
   (`xcrun simctl list devices available`; names can repeat, so use the UDID).
-- CI (`.github/workflows/ci.yml`) runs `pre-commit` and `ios` on `macos-26`
-  with Xcode 26.6 (also in `.xcode-version`; bump together). `ios` picks an
-  available iPhone simulator by UDID, creating one if none exists, and caches
-  DerivedData with platform's `xcode-cache` action. The aggregate
+- CI (`.github/workflows/ci.yml`) runs `pre-commit` and `ios` on `xcode-27`
+  with Xcode 27.2 (`DEVELOPER_DIR`; also in `.xcode-version`; bump together).
+  `ios` picks an available iPhone simulator by UDID, creating one if none
+  exists, and caches DerivedData with platform's `xcode-cache` action. The aggregate
   `CI Status` job `needs` every other job; add new jobs to it. `main`'s
   ruleset requires only `CI Status`.
 

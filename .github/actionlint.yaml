@@ -1,2 +1,2 @@
 self-hosted-runner:
-  labels: [macos-26]
+  labels: [xcode-27]
