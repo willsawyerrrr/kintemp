@@ -382,7 +382,7 @@ private func reading(_ profile: Int?, _ celsius: Double = 36.4, at seconds: Time
         await slow.uploadStarted()
         c.delete(reading(1))
         slow.finishUpload()
-        await flushing.value
+        _ = await flushing.value
         #expect(slow.deleted == [name])
         #expect(store.pendingDeletions.isEmpty)
     }
