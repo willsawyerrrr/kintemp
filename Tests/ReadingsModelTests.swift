@@ -196,7 +196,7 @@ struct ReadingsModelTests {
         let store = InMemoryReadingStore()
         let model = makeModel(myProfile: 1, sync: makeCoordinator(store: store))
         let a = reading(36.1, at: 100)
-        store.add(SyncReading(a)!, uploaded: true)
+        _ = store.add(SyncReading(a)!, uploaded: true)
         model.handle(.reading(a))
 
         model.delete(a)
