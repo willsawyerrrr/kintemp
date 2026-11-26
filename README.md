@@ -1,4 +1,4 @@
 # Kintemp
 
-iOS app that reads a ThermoCare Bluetooth thermometer and attributes each
+iOS 27 app that reads a ThermoCare Bluetooth thermometer and attributes each
 reading to the thermometer's profile. See `docs/`.
