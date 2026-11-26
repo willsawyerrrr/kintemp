@@ -243,9 +243,9 @@ cloudkit.share in production schema" unless it was deployed from Development.
 The alert explains this error in plain language alongside the `CKError` text.
 
 `scripts/bootstrap-cloudkit-schema.sh [simulator name]` creates such types
-without a device or a tap. It builds a Debug build for an iPhone Simulator
-(ad-hoc signed, so the iCloud entitlement applies), installs it and launches it
-with `-BootstrapCloudKitSchema`. That argument exists only in Debug builds
+without a device or a tap. It builds a Debug build for an iOS 27 or later iPhone
+Simulator (ad-hoc signed, so the iCloud entitlement applies), installs it and
+launches it with `-BootstrapCloudKitSchema`. That argument exists only in Debug builds
 (`CloudKitSchemaBootstrap`): the app runs `CloudKitHouseholdSharing.prepareShare`,
 the path the Invite button takes, prints `bootstrap: OK` or `bootstrap: FAILED, ...`
 and exits (0 success, 2 no iCloud account, 1 any other failure). On success the

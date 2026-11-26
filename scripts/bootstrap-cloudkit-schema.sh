@@ -13,13 +13,14 @@ BUNDLE_ID=dev.willsawyerrrr.kintemp
 DERIVED=build/bootstrap
 SCHEMA_OUT=build/development-schema.ckdb
 
+devices=$(xcrun simctl list devices available | awk '/^-- /{ ok = $2 == "iOS" && $3 + 0 >= 27 } ok')
 name=${1:-}
 if [ -z "$name" ]; then
-  name=$(xcrun simctl list devices available | sed -n 's/^ *\(iPhone [^(]*[^( ]\) (.*/\1/p' | head -n 1)
+  name=$(echo "$devices" | sed -n 's/^ *\(iPhone [^(]*[^( ]\) (.*/\1/p' | head -n 1)
 fi
-[ -n "$name" ] || { echo "No available iPhone simulator" >&2; exit 1; }
-udid=$(xcrun simctl list devices available | grep -F "    $name (" | head -n 1 | sed 's/.*(\([0-9A-F-]\{36\}\)).*/\1/')
-[ -n "$udid" ] || { echo "Simulator '$name' not found" >&2; exit 1; }
+[ -n "$name" ] || { echo "No available iOS 27 or later iPhone simulator" >&2; exit 1; }
+udid=$(echo "$devices" | grep -F "    $name (" | head -n 1 | sed 's/.*(\([0-9A-F-]\{36\}\)).*/\1/')
+[ -n "$udid" ] || { echo "No iOS 27 or later simulator '$name' found" >&2; exit 1; }
 echo "Simulator: $name ($udid)"
 
 xcrun simctl bootstatus "$udid" -b >/dev/null
